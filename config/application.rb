@@ -13,15 +13,20 @@ module CoinQuest
      # Allow cross-origin resource sharing (CORS)
      config.middleware.insert_before 0, Rack::Cors do
        allow do
-         origins do |origin, _|
-           if Rails.env.development?
+        origins 'http://localhost:3001'
+        
+        
+        #origins do |origin, _|
+           #if Rails.env.development?
              # Replace with your EC2 instance URL
-             origin =~ /https:\/\/52\.16\.53\.86/
-           else
+             #origin =~ /https:\/\/52\.16\.53\.86/
+           #else
              # Allow requests from localhost:3000 when running locally
-             origin =~ /http:\/\/localhost:3000/
-           end
-         end
+             #origin =~ /http:\/\/localhost:3001/
+           #end
+         #end
+
+
          resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
        end
      end
